@@ -34,6 +34,12 @@ class _MyImplicitAnimationState extends State<MyImplicitAnimation> {
           AnimatedContainer(
             duration: const Duration(seconds: 1),
             width: 500,
+            curve: Curves.easeInOutQuint,
+            decoration: BoxDecoration(
+              gradient: RadialGradient(
+                  colors: const [Colors.purple, Colors.transparent],
+                  stops: [_bigger ? 0.2 : 0.5, 1.0]),
+            ),
             child: FlutterLogo(
               size: _bigger ? 300 : 100,
             ),
