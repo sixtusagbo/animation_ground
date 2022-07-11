@@ -1,4 +1,5 @@
 import 'package:animation_ground/screens/animations/my_implicit_animations.dart';
+import 'package:animation_ground/screens/animations/my_tween_animation.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<Widget> screens = [
     const MyImplicitAnimation(),
+    const MyTweenAnimation(),
   ];
 
   int currentPage = 0;
