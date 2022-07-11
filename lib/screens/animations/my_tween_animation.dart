@@ -1,8 +1,23 @@
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
-class MyTweenAnimation extends StatelessWidget {
+class MyTweenAnimation extends StatefulWidget {
   const MyTweenAnimation({Key? key}) : super(key: key);
+
+  @override
+  State<MyTweenAnimation> createState() => _MyTweenAnimationState();
+}
+
+class _MyTweenAnimationState extends State<MyTweenAnimation> {
+  double _sliderValue = 0;
+  Color? _newColor = Colors.white;
+  Container starsBackgound = Container(
+    decoration: const BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage("assets/images/star_space.jpg"),
+        fit: BoxFit.fill,
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -12,28 +27,44 @@ class MyTweenAnimation extends StatelessWidget {
           "TweenAnimationBuilder",
         ),
         backgroundColor: Colors.amber,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(80),
-          child: Container(
-            height: 80,
-            width: double.infinity,
-            decoration: const BoxDecoration(color: Colors.amberAccent),
-          ),
-        ),
+        centerTitle: true,
       ),
-      body: Center(
-        child: TweenAnimationBuilder(
-          tween: Tween<double>(begin: 0, end: 2 * math.pi),
-          duration: const Duration(seconds: 1),
-          builder: (_, double angle, __) {
-            return Transform.rotate(
-              angle: angle,
-              child: const FlutterLogo(
-                size: 300,
+      body: Stack(
+        children: [
+          starsBackgound,
+          Column(
+            children: [
+              Center(
+                child: TweenAnimationBuilder(
+                  tween: ColorTween(begin: Colors.white, end: _newColor),
+                  duration: const Duration(seconds: 2),
+                  builder: (_, Color? color, __) {
+                    return ColorFiltered(
+                      colorFilter: ColorFilter.mode(color!, BlendMode.modulate),
+                      child: Image.asset("assets/images/sun.png"),
+                    );
+                  },
+                  onEnd: () {
+                    //- Not recommended unless you are using one of the
+                    //- explicit animation widgets.
+                    setState(() {
+                      _newColor =
+                          _newColor == Colors.red ? Colors.white : Colors.red;
+                    });
+                  },
+                ),
               ),
-            );
-          },
-        ),
+              Slider.adaptive(
+                value: _sliderValue,
+                onChanged: (double value) => setState(() {
+                  _sliderValue = value;
+                  _newColor =
+                      Color.lerp(Colors.white, Colors.red, _sliderValue);
+                }),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
