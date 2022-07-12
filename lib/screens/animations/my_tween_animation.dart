@@ -24,7 +24,7 @@ class _MyTweenAnimationState extends State<MyTweenAnimation> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "TweenAnimationBuilder",
+          "Tween Animation Builder",
         ),
         backgroundColor: Colors.amber,
         centerTitle: true,

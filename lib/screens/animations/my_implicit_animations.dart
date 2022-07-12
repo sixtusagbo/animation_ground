@@ -15,7 +15,7 @@ class _MyImplicitAnimationState extends State<MyImplicitAnimation> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "MyImplicitAnimation",
+          "Implicit Animations",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.green[400],
