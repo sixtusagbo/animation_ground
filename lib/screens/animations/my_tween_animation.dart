@@ -38,20 +38,15 @@ class _MyTweenAnimationState extends State<MyTweenAnimation> {
                 child: TweenAnimationBuilder(
                   tween: ColorTween(begin: Colors.white, end: _newColor),
                   duration: const Duration(seconds: 2),
-                  builder: (_, Color? color, __) {
+                  builder: (_, Color? color, Widget? myChild) {
                     return ColorFiltered(
                       colorFilter: ColorFilter.mode(color!, BlendMode.modulate),
-                      child: Image.asset("assets/images/sun.png"),
+                      child: myChild,
                     );
                   },
-                  onEnd: () {
-                    //- Not recommended unless you are using one of the
-                    //- explicit animation widgets.
-                    setState(() {
-                      _newColor =
-                          _newColor == Colors.red ? Colors.white : Colors.red;
-                    });
-                  },
+                  //- Very important as it makes flutter rebuild only the
+                  //- new color feature from frame to frame not the image itself
+                  child: Image.asset("assets/images/sun.png"),
                 ),
               ),
               Slider.adaptive(
