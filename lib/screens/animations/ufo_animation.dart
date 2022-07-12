@@ -1,4 +1,4 @@
-import 'package:animation_ground/screens/animations/components/beam_clipper.dart';
+import 'package:animation_ground/screens/animations/components/beam_transition.dart';
 import 'package:flutter/material.dart';
 
 class UfoAnimation extends StatefulWidget {
@@ -50,24 +50,7 @@ class _UfoAnimationState extends State<UfoAnimation>
         alignment: AlignmentDirectional.center,
         children: [
           starsBackgound,
-          AnimatedBuilder(
-            animation: _animation,
-            builder: (_, __) {
-              return ClipPath(
-                clipper: const BeamClipper(),
-                child: Container(
-                  height: 1000,
-                  decoration: BoxDecoration(
-                    gradient: RadialGradient(
-                      radius: 1.5,
-                      colors: const [Colors.yellow, Colors.transparent],
-                      stops: [0, _animation.value],
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
+          BeamTransition(animation: _animation),
           ufo,
         ],
       ),
