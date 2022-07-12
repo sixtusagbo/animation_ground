@@ -1,3 +1,4 @@
+import 'package:animation_ground/screens/animations/deep_dive.dart';
 import 'package:animation_ground/screens/animations/my_explicit_animations.dart';
 import 'package:animation_ground/screens/animations/my_implicit_animations.dart';
 import 'package:animation_ground/screens/animations/my_tween_animation.dart';
@@ -17,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const MyTweenAnimation(),
     const MyExplicitAnimation(),
     const UfoAnimation(),
+    const DeepDive(),
   ];
 
   int currentPage = 0;
